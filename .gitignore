@@ -1,0 +1,6 @@
+*/venv
+*/.gradle
+*/.idea
+*/build
+*/CMakeLists.txt
+*/cmake-build-debug
