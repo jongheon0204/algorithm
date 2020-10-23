@@ -1,5 +1,3 @@
-// 이중 연결 리스트로 구현한 큐
-
 template <typename T>
 class Node{
 private:
@@ -33,54 +31,45 @@ public:
 };
 
 template <typename T>
-class Queue{
+class Stack{
 private:
-    int num;
     Node<T> * head;
     Node<T> * tail;
+    int num;
 public:
-    Queue(){
+    Stack():num(0){
         head = tail = nullptr;
-        num = 0;
     }
 
     void push(T item){
-        Node<T> * node = new Node<T>(item);
-        if(tail == nullptr){
+        Node<T> * node = new Node(item);
+        if(head == nullptr){
             head = tail = node;
         }else{
             tail->setNext(node);
-            node->setPre(node);
+            node->setPre(tail);
             tail = node;
         }
-
         this->num++;
     }
 
     T pop(){
-        if(head == nullptr) throw "Queue is Empty";
-        Node<T> * node = head;
-        T ret = head->getItem();
+        if(tail == nullptr) throw "Stack is Empty";
+        T ret = tail->getItem();
+        Node<T> * node = tail;
         if(head == tail){
             head = tail = nullptr;
         }else{
-            head = head->getNext();
-            head->setPre(nullptr);
+            tail = tail->getPre();
+            tail->setNext(nullptr);
         }
-
-        delete node;
-
         this->num--;
+        delete node;
         return ret;
     }
 
-    T front(){
-        if(head == nullptr) throw "front is Empty";
-        return head->getItem();
-    }
-
-    T back(){
-        if(tail == nullptr) throw "back is Empty";
+    T top(){
+        if(tail == nullptr) throw "top is Em[ty";
         return tail->getItem();
     }
 
@@ -91,5 +80,4 @@ public:
     bool isEmpty(){
         return this->num == 0;
     }
-
 };
