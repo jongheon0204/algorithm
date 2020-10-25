@@ -152,14 +152,14 @@ private:
         return true;
     }
 
-    void preOrder(Node<T> * node){
+    void inOrder(Node<T> * node){
         if(node == nullptr) return;
         preOrder(node->getLeft());
         std::cout<<node->getItem()<<' ';
         preOrder(node->getRight());
     }
 
-    void inOrder(Node<T> * node){
+    void preOrder(Node<T> * node){
         if(node == nullptr) return;
         std::cout<<node->getItem()<<' ';
         inOrder(node->getLeft());
